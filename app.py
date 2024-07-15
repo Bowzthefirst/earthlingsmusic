@@ -4,6 +4,10 @@ from pydub import AudioSegment
 import os
 import tempfile
 import re
+import patch_pytube
+
+# Apply the pytube patch
+patch_pytube.patch_pytube()
 
 def sanitize_filename(filename):
     return re.sub(r'[^\w\-_\. ]', '_', filename)
