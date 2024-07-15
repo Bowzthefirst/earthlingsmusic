@@ -12,9 +12,9 @@ def patch_pytube():
         r"""
 def get_throttling_function_name(js: str) -> str:
     function_patterns = [
-        r'a\.[a-zA-Z]\s*&&\s*\([a-z]\s*=\s*a\.get\("n"\)\)\s*&&.*?\|\|\s*([a-z]+)',
-        r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])?\([a-z]\)',
-        r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])\([a-z]\)',
+        r'a\.[a-zA-Z]\\s*&&\\s*\\([a-z]\\s*=\\s*a\.get\("n"\)\\)\\s*&&.*?\\|\\|\\s*([a-z]+)',
+        r'\\([a-z]\\s*=\\s*([a-zA-Z0-9$]+)(\\[\\d+\\])?\\([a-z]\\)',
+        r'\\([a-z]\\s*=\\s*([a-zA-Z0-9$]+)(\\[\\d+\\])\\([a-z]\\)',
     ]
     logger.debug('Finding throttling function name')
     for pattern in function_patterns:
@@ -28,7 +28,7 @@ def get_throttling_function_name(js: str) -> str:
             if idx:
                 idx = idx.strip("[]")
                 array = re.search(
-                    r'var {nfunc}\s*=\s*(\[.+?\]);'.format(
+                    r'var {nfunc}\\s*=\\s*(\\[.+?\\]);'.format(
                         nfunc=re.escape(function_match.group(1))),
                     js
                 )
